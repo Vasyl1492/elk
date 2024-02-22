@@ -120,3 +120,12 @@ services:
       interval: 10s
       timeout: 10s
       retries: 120
+
+
+volumes:
+  certs:
+    driver: local
+  esdata01:
+    driver: local
+  kibanadata:
+    driver: local
