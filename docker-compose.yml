@@ -10,11 +10,11 @@ volumes:
 
 services:
   elastic-setup:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
     networks:
       - elastic
     volumes:
-      - /opt/volume/elastic-certs:/usr/share/elasticsearch/config/certs
+      - elastic-certs:/usr/share/elasticsearch/config/certs
     user: "0"
     command: >
       bash -c '
@@ -64,12 +64,12 @@ services:
     depends_on:
       elastic-setup:
         condition: service_healthy
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
     networks:
       - elastic
     volumes:
-      - /opt/volume/elastic-certs:/usr/share/elasticsearch/config/certs
-      - /opt/volume/elastic:/usr/share/elasticsearch/data
+      - elastic-certs:/usr/share/elasticsearch/config/certs
+      - elastic:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
     environment:
@@ -108,12 +108,12 @@ services:
     depends_on:
       elastic:
         condition: service_healthy
-    image: docker.elastic.co/kibana/kibana:8.11.3
+    image: docker.elastic.co/kibana/kibana:8.12.2
     networks:
       - elastic
     volumes:
-      - /opt/volume/elastic-certs:/usr/share/kibana/config/certs
-      - /opt/volume/kibana:/usr/share/kibana/data
+      - elastic-certs:/usr/share/kibana/config/certs
+      - kibana:/usr/share/kibana/data
     ports:
       - 5601:5601
     environment:
