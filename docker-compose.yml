@@ -14,7 +14,7 @@ services:
     networks:
       - elastic
     volumes:
-      - elastic-certs:/usr/share/elasticsearch/config/certs
+      - /opt/volume/elastic-certs:/usr/share/elasticsearch/config/certs
     user: "0"
     command: >
       bash -c '
@@ -68,8 +68,8 @@ services:
     networks:
       - elastic
     volumes:
-      - elastic-certs:/usr/share/elasticsearch/config/certs
-      - elastic:/usr/share/elasticsearch/data
+      - /opt/volume/elastic-certs:/usr/share/elasticsearch/config/certs
+      - /opt/volume/elastic:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
     environment:
@@ -112,8 +112,8 @@ services:
     networks:
       - elastic
     volumes:
-      - elastic-certs:/usr/share/kibana/config/certs
-      - kibana:/usr/share/kibana/data
+      - /opt/volume/elastic-certs:/usr/share/kibana/config/certs
+      - /opt/volume/kibana:/usr/share/kibana/data
     ports:
       - 5601:5601
     environment:
